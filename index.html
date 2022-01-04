@@ -33,16 +33,17 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="#home">Home</a>
                   <a class="nav-link" href="#skills">Skills</a>
                   <a class="nav-link" href="#riwayat">Riwayat Pendidikan</a>
-                  <a class="nav-link" href="#projects">Projects</a>
+                  <a class="nav-link" href="#project">Projects</a>
                   <a class="nav-link" href="#contact">Contact</a>
                 </div>
               </div>
             </div>
         </nav>
       <!-- Start your project here-->
+      <section id="home">
         <div class="jumbotron home p-5">
           <div class="row">
             <div class="photo2 col-sm-2 mt-3 ml-3 mb-3">
@@ -55,7 +56,8 @@
             </div>
           </div>
         </div>
-
+      </section>
+      <section id="skills">
         <div class="container-fluid skills text-center pt-3 pb-3">
           <div class="container-sm">
             <div class="contents">
@@ -81,7 +83,8 @@
             </div>
           </div>
         </div>
-
+      </section>
+      <section id="riwayat">
         <div class="container-fluid riwayat">
           <div class="container-sm">
             <h3 class="text-center mt-5">Riwayat Pendidikan</h3>
@@ -91,7 +94,7 @@
               </div>
               <div class="col-sm-8 mt-3">
                 <h5>S1</h5>
-                <h5>Universitas  Pasundan (2004-2008)</h5>
+                <h5>Universitas Pasundan (2004-2008)</h5>
                 <p>Bachelor of Engineering, Informatics. Study in Web Application Development.</p>
                 <h5>S2</h5>
                 <h5>Institut Teknologi Bandung (2009-2011)</h5>
@@ -100,10 +103,11 @@
             </div>
           </div>
         </div>
-
+      </section>
+      <section id="project">
         <div class="container-fluid">
-          <div class="project container-sm align-center pd-3 pt-3">
-            <h3 class="text-center mb-5 mt-5"> Projects</h3>
+          <div class="project contsm aligainer-n-center pd-3 pt-3 ms-auto">
+            <h3 class="text-center mb-5 mt-5">Projects</h3>
             <div class="row">
               <div class="col-sm-4 mb-5">
                 <div class="card" style="width: 18rem;">
@@ -132,7 +136,29 @@
             </div>
           </div>
         </div>
-
+      </section>
+      <section id="contact">
+        <h4 class="text-center mb-6 mt-5">Contact</h4>
+          <div class="text-center ml-3">
+            <form class="row g-3" name="submit-to-google-sheet">
+              <div class="col-12">
+                <label for="inputName" class="form-label">Nama</label>
+                <input type="Name" class="form-control" id="inputName" name="nama">
+              </div>
+              <div class="col-12 mt-5">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail" name="email">
+              </div>
+              <div class="col-12 mt-5">
+                <label for="inputMessage" class="form-label">Pesan</label>
+                <textarea type="text" class="form-control" id="inputMessage" placeholder="Kritik & Saran" name="pesan"></textarea>
+              </div>
+              <div class="col-12 mb-3">
+                <button type="submit" class="btn btn-primary">Kirim</button>
+              </div>
+            </form>
+          </div>
+      </section>
        <!-- Footer -->
       <div class="footer">
         <footer class="bg-secondary text-center text-white">
@@ -226,5 +252,16 @@
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwRCctVQDyjxGWDx00zgDoY1hgELygzOhpOkEcvRJrZ3Zzh_ku8IItWTM3VmVnMPpyeig/exec'
+      const form = document.forms['submit-to-google-sheet']
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
   </body>
 </html>
