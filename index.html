@@ -147,18 +147,18 @@
            <div class="container-fluid">
              <div class="container-sm mb-5">
                <div class="row">
-                  <form class="row g-3">
+                  <form class="row g-3" name="submit-to-google-sheet">
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="inputEmail4">
+                      <input type="email" class="form-control" id="inputEmail4" name="email>
                     </div>
                     <div class="col-md-6">
                       <label for="nama" class="form-label">Nama</label>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" name="nama">
                     </div>
                     <div class="col-12">
                       <label for="inputAddress" class="form-label">Pesan</label>
-                      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="pesan"></textarea>
                     </div>
                     </div>
                     <div class="col-12 mt-3">
@@ -263,5 +263,16 @@
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwRCctVQDyjxGWDx00zgDoY1hgELygzOhpOkEcvRJrZ3Zzh_ku8IItWTM3VmVnMPpyeig/exec'
+      const form = document.forms['submit-to-google-sheet']
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
   </body>
 </html>
